@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>¿Qué animal eres en el zoológico de la oficina?</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f4; }
+        h1 { color: #333; }
+        .question { margin-bottom: 20px; }
+        .result { margin-top: 30px; font-size: 1.2em; font-weight: bold; }
+        button { padding: 10px 20px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h1>¿Qué animal eres en el zoológico de la oficina?</h1>
+    <form id="quizForm">
+        <div class="question">1. Me gusta tomar decisiones rápidamente y asumir el liderazgo en los proyectos.<br>
+            <input type="radio" name="q1" value="leon"> Verdadero
+            <input type="radio" name="q1" value=""> Falso
+        </div>
+        <div class="question">2. Prefiero analizar todos los detalles antes de actuar.<br>
+            <input type="radio" name="q2" value="elefante"> Verdadero
+            <input type="radio" name="q2" value=""> Falso
+        </div>
+        <div class="question">3. Me encanta hacer reír a los demás y mantener el ambiente relajado.<br>
+            <input type="radio" name="q3" value="mono"> Verdadero
+            <input type="radio" name="q3" value=""> Falso
+        </div>
+        <div class="question">4. Me preocupo por cómo se sienten los demás y trato de mantener la armonía.<br>
+            <input type="radio" name="q4" value="delfin"> Verdadero
+            <input type="radio" name="q4" value=""> Falso
+        </div>
+        <div class="question">5. Me frustro cuando las cosas no se hacen de forma eficiente.<br>
+            <input type="radio" name="q5" value="leon"> Verdadero
+            <input type="radio" name="q5" value=""> Falso
+        </div>
+        <div class="question">6. Me siento incómodo si no tengo toda la información antes de actuar.<br>
+            <input type="radio" name="q6" value="elefante"> Verdadero
+            <input type="radio" name="q6" value=""> Falso
+        </div>
+        <div class="question">7. Me distraigo fácilmente, pero soy muy creativo cuando estoy motivado.<br>
+            <input type="radio" name="q7" value="mono"> Verdadero
+            <input type="radio" name="q7" value=""> Falso
+        </div>
+        <div class="question">8. Me gusta escuchar a los demás y ayudar a resolver conflictos.<br>
+            <input type="radio" name="q8" value="delfin"> Verdadero
+            <input type="radio" name="q8" value=""> Falso
+        </div>
+        <div class="question">9. Me gusta tener el control y que las cosas se hagan a mi manera.<br>
+            <input type="radio" name="q9" value="leon"> Verdadero
+            <input type="radio" name="q9" value=""> Falso
+        </div>
+        <div class="question">10. Prefiero colaborar en lugar de competir.<br>
+            <input type="radio" name="q10" value="delfin"> Verdadero
+            <input type="radio" name="q10" value=""> Falso
+        </div>
+        <button type="button" onclick="calcularResultado()">Ver resultado</button>
+    </form>
+    <div class="result" id="resultado"></div>
+
+    <script>
+        function calcularResultado() {
+            const form = document.forms['quizForm'];
+            const conteo = { leon: 0, elefante: 0, mono: 0, delfin: 0 };
+            for (let i = 1; i <= 10; i++) {
+                const respuesta = form['q' + i].value;
+                if (respuesta) conteo[respuesta]++;
+            }
+            let max = 0;
+            let tipo = '';
+            for (let animal in conteo) {
+                if (conteo[animal] > max) {
+                    max = conteo[animal];
+                    tipo = animal;
+                }
+            }
+            const nombres = {
+                leon: '🦁 León – El líder dominante',
+                elefante: '🐘 Elefante – El analítico reflexivo',
+                mono: '🐒 Mono – El creativo espontáneo',
+                delfin: '🐬 Delfín – El empático armonioso'
+            };
+            document.getElementById('resultado').innerText = tipo ? `Tu personalidad predominante es: ${nombres[tipo]}` : 'Por favor responde todas las preguntas.';
+        }
+    </script>
+</body>
+</html>
